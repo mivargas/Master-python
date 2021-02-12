@@ -1,0 +1,12 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}{{category.name}}{% endblock  %}
+
+
+{% block content %}
+
+<h1 class="title">{{category.name}}</h1>
+<p>{{category.description}}</p>
+{% comment %} {% include 'articles/articles.html' with articles=category.article_set.all %} {% endcomment %} {% comment "relacion a la inversa" %}esto es posible gracias al ManytoMany de category NOTA cuando se quiere consular la relacion a la inversa (desde la categoria obtener los articulos) se debe usar el _set precedido por el modelo relacionado (article en este caso){% endcomment %}
+{% include 'articles/articles.html' with articles=category.articles.all %} {% comment "related_name" %} el uso de related_name="articles" nos ayuda a sustituir el _set en las relaciones inversa a una plabra clave de nuestro gusto en el caso del modelo es *articles*{% endcomment %}
+{% endblock  %}

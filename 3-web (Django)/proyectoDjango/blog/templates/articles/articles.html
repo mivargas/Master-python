@@ -1,0 +1,34 @@
+{% for article in articles %}
+    <article class="article-item">
+        {% if article.image != 'null' %}
+            <div class="image">
+                <img src="{{article.image.url}}"/> {% comment %}De esta formma se llama a las url de las imagenes{% endcomment %}
+            </div>
+        {% endif %}
+
+        <div class="data">
+            <h2>
+            <a href="{% url 'article' article.id %}">{{article.title}}</a>
+            </h2>
+            <p>
+                {% for category in article.categories.all %} {% comment "iteracion de ManyToMany" %}debeponerse el .all al final para mostrar todas las categorias {% endcomment %}
+                    <a href="{% url 'category' category.id %}">{{category.name}} </a>
+                    {% if forloop.counter < article.categories.all|length %}
+                        {{" - "}}
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <span class="date">
+                {{article.user.first_name}} {{article.user.last_name}} | {% comment "uso de propiedades relacionados por la foreign key" %} de esta manera se puede hacer uso de las propiedadesrelacionadas con la tabla usuario se llama al objeto luego de punto se especifica la prpiedad con la que se relaciono en el modelo en este caso user "article.user" y el nombre de la propiedad en user{% endcomment %}
+                {{article.created_at}}
+            </span>
+            
+            <p>
+                {{article.content|safe}}
+            </p>
+        </div>
+
+        <div class="clear-fix"></div>
+    </article>
+
+{% endfor %}

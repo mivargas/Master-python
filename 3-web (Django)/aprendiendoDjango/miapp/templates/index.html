@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+<!--este esun comentario en html-->
+{% comment "Esto es un comentario con Django" %}
+    <h1>hola</h1>
+{% endcomment %}
+
+<h1 class="title">{{title}}</h1>
+
+<p>{{mi_variable}}</p>
+
+{% if nombre and nombre == 'Miguel Vargas' %}
+    <p>{{nombre}}</p>
+{% else %}
+    <strong>El nombre no existe o no coincide</strong>
+{% endif %}
+
+<!--{{lenguajes}}-->
+
+<h3>Listado de lenguajes de programación</h3>
+
+<ul>
+{% for lenguaje in lenguajes %}
+    <li>{{forloop.counter}}. {{lenguaje}}</li> {% comment "utilidades for" %}forloop.counter: cuanta elementos, forloop.counter0: numeracion desde 0, forloop.first: devuelve True en el primer elemento, forloop.last: devuelve True en el ultimo elemento, forloop.revcounter: traer los registros con numeraicon descendiente, forloop.counter0: traer los registros con numeraicon descendiente hasta el 0{% endcomment %}
+{% empty %} <!--Esto es lo mismo que hacer un if-->
+    <P>NO HAY LENGUAJES PARA MOSTRAR</p>
+{% endfor %}
+</ul>
+
+{% include "fecha-actual.html" with saludo='hola este es un saludo de la plantilla' %} {% comment "NOTA "%}Esta variable 'saludo' solo estara disponible para fecha-actual.html, si coloco el parametro only al final solo se podran usaar las variables declaradas en el with{% endcomment %}
+
+{% endblock  %}

@@ -1,0 +1,25 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %} {{title}} {% endblock title %}
+
+{% block content %}
+    <h1> {{title}} </h1>
+
+    {{register_form.errors}}
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {% comment "esto imprime todo el formulario inclos con notas de posbles restricciones" %}
+            {{register_form.as_p}}
+        {% endcomment %}
+        
+        {% for field in register_form %} {% comment %} MOstrar solo lo necesario en el formulario (sin etiquetas restrictivas de errores){% endcomment %}
+
+            <label for="{{field.name}}">{{field.label}}</label>
+            {{field}}
+          
+        {% endfor %}
+        <input type="submit" value="Registrarse">
+    </form>
+
+{% endblock content %}

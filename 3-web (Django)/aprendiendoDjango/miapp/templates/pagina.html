@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Página de pruebas
+{% endblock  %}
+
+
+{% block content %}
+
+<h1 class="title">Página de mi web</h1>
+<!--p>Creado por Miguel</p-->
+{{ "Creado por Miguel ñ"|cut:"ñ" }} {% comment "Filtro" %}los filtros son funciones ya hechas en django {% endcomment %}
+<p>{{texto|default:"NO HAY NADA PARA MOSTRAR"}}</p> {% comment "fitro %}este filtro mostrar un texto si variable que interpola es vacia ''{% endcomment %}
+<p>{{lista|first}}</p>
+<p>{{lista|last}}</p>
+<p>{{lista|join:", "}}</p> {% comment %} separa por un caracter que definamos la lista{% endcomment %}
+<p>{{lista|length}}</p>
+<p>{{"Hola lista"|length}}</p>
+<p>{{"Texto pruebas"|upper}}</p>
+<p>{{"Texto pruebas"|lower}}</p>
+<p>{{"Texto pruebas"|title}}</p>
+<p>{{"Texto pruebas"|wordcount}}</p> {% comment %}cuenta palabras{% endcomment %}
+<p>{{lista|random}}</p>
+<p>{{"<h1>texto: </h1><strong>aqui esta</strong>"|striptags}}</p> {% comment %}limpia el html (etiquetas) {% endcomment %}
+
+{% comment "filtro personalizado%}se pueden crear los filtros propios{% endcomment %}
+{% load filters %}
+{{"Miguel Vargas"|saludo|safe}} {% comment %} safe para no escapar del html{% endcomment %}
+
+<!--NOTA: se pueden convinar los filtros-->
+{% endblock  %}

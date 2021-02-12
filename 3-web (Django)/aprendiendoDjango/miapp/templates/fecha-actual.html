@@ -1,0 +1,13 @@
+<hr/>
+<h2>Bienenido {{nombre}} | {{saludo}}</h2> {% comment %}Se hereda el nombre del templet index que es donde este esta siendo incluido{% endcomment %}
+<h2>Estamos a 2021</h2>
+
+<p>Años hasta el 2050</p>
+<ul>
+    {% for year in  years%}
+        {% if year|divisibleby:2 %} {% comment %} filtro para sacar pares debido a que lenguaje de plantilla no acepta el modulo % {% endcomment %}
+            <li>{{year}}</li> 
+        {% endif %}
+     
+    {% endfor %}
+</ul>

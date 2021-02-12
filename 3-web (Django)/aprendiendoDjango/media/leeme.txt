@@ -1,0 +1,1 @@
+se debe crear esta carpeta para las imagenes que se suban (se debe instalar la librria pillow y configurar las turas url y root media en settings. ademas de agregar en el modelo la subcarpeta que se creara para el campo). por ultimohacer las configuaraciones en url.py para tener acceso a la carpeta por ruta

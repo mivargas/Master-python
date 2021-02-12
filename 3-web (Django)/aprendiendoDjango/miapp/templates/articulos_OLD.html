@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Listado de articulos
+{% endblock  %}
+
+
+{% block content %}
+
+<h1 class="title">Listado de articulos</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="message">
+            {{message}}
+        </div>      
+    {% endfor %}
+{% endif %}
+
+{% for articulo in articulos %}
+
+<ul>
+    <li>
+
+        {% if articulo.image != 'null' %}
+            <img src="{{articulo.image.url}}"/> {% comment %}De esta formma se llama a las url de las imagenes{% endcomment %}
+        {% endif %}
+
+        <h4>{{articulo.id}}. {{articulo.title}}</h4>
+        <span>{{articulo.created_at}}</span>
+        {% if articulo.public %}
+            <strong>Publico</strong>
+        {%else%}
+            <strong>Privado</strong>
+        {% endif %}
+        <p>{{articulo.content}}<br/>
+        <a href="{% url 'borrar' id=articulo.id %}">Eliminar</a>
+        </p>
+        <br/>
+    </li>
+</ul>
+
+{% endfor %}
+
+{% endblock  %}

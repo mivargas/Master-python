@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>
+        {% block title %}
+        {% endblock %}
+        | Miguel vargas
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!--Cabecera de la pagina-->
+    <header>
+        <div id="logotipo">
+            <!--Logo django-->
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <h1>Sitio Web con django</h1>
+        </div>
+    </header>
+    <!--h1>Sitio Web con django | Miguel Vargas</h1-->
+
+    <nav>
+
+        <ul>
+            <li>
+                <!--a href="/inicio">Inicio</a--> <!--este es por url-->
+                <a href="{% url 'index' %}">Inicio</a> <!--Este es por el nombre de la url 'name'-->
+            </li>
+            <li>
+                <a href="{% url 'articulos'  %}">Articulos</a>
+            </li>
+            <li>
+            <li>
+                <a href="{% url 'create'  %}">Crear articulos</a>
+            </li>
+            <li>
+                <a href="{% url 'create_full'  %}">Crear articulos 2 api</a>
+            </li>
+            <li>
+                <!--a href="/hola-mundo">Hola Mundo</a-->
+                <a href="{% url 'hola_mudo' %}">Hola Mundo</a>
+            </li>
+            <li>
+                <!--a href="/pagina-prueba">Página de pruebas</a-->
+                <a href="{% url 'pagina' %}">Página de pruebas</a>
+            </li>
+            <li>
+                <!--a href="/contacto">Contacto</a-->
+                <a href="{% url 'contacto'  %}">Contacto</a>
+                <!--a href="{% url 'contacto' 'miguel' 'vargas' %}">Contacto</a--> <!--pasando parametro fijos-->
+            </li>
+
+        </ul>
+    </nav>
+    
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    
+    <div id="content">
+        <div class="box">
+            <!--h2 class="title">Titilo prueba</h2-->
+            {% block content %}
+            <!--codigo que viene del template-->
+            <strong>Contenido del bloque original</strong>
+            <!--VALOR QUE SE MUESTRA POR DEFECTO SI NO HAY UN BLOCK CONTENT DEFINIDO-->
+            {% endblock  %}
+        </div>
+    </div>
+
+    <footer>
+        Master en Python &copy; Miguel Vargas - {% now "d/m/Y h:m:s" %}
+    </footer>
+</body>
+
+</html>

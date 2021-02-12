@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Formularios con Django
+{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Formularios con Django</h1>
+
+{% if form.errors %}
+    <strong class="rojo">Hay errores en el formulario</strong>
+    {% comment %} {{form.errors}} {% endcomment %}
+{% endif %}
+<!--form action="{% url 'save' %}" method="POST"--> <!--NOTA: igual funciona-->
+<form action="" method="POST">
+
+    {% csrf_token %} 
+
+    {% comment "impresion de formulario" %}{{ form }}{% endcomment %}
+    {{ form.as_p }} {% comment "as_p" %}as_p es para meter cada elemento en un parrafo p {% endcomment %}
+
+    <input type="submit" value="Guardar">
+</form>
+{% endblock %}

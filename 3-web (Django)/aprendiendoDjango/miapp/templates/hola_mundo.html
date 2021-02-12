@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Hola mundo
+{% endblock %}
+
+{% block content %}
+{{block.super}} <!--poder heredar el contenido original del bock content del layout-->
+<h1 class="title">HOLA MUNDO CON DJANGO!!!!</h1>
+<h3>Soy Miguel</h3>
+{% endblock %}

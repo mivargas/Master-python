@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>
+        {% block title %}
+        {% endblock %}
+        | Miguel vargas
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!--Cabecera de la pagina-->
+    <header>
+        <div id="logotipo">
+            <!--Logo django-->
+            <img src="{% static 'images/logo.png' %}" alt="">
+            <h1>Proyecto con django</h1>
+        </div>
+    </header>
+    <!--h1>Sitio Web con django | Miguel Vargas</h1-->
+
+    <nav>
+
+        <ul>
+            <li>
+                <!--a href="/inicio">Inicio</a--> <!--este es por url-->
+                <a href="{% url 'index' %}">Inicio</a> <!--Este es por el nombre de la url 'name'-->
+            </li>
+            {% if user.email %}
+                <li>
+                    <a href="{% url 'list_articles' %}">Categorías</a>
+                    <ul>
+                        {% for category in categories %}
+                            <li><a href="{% url 'category' category.0  %}">{{category.1}}</a></li>                     
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% for page in  pages %}
+                    <li>
+                        <a href="{% url 'page' page.2 %}">{{page.1}}</a>
+                    </li>
+                {% endfor %}
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a> 
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'register' %}">Registro</a>
+                </li>
+
+                </li>
+                <li>
+                    <a href="{% url 'login' %}">Login</a> 
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    
+    <div id="content">
+        <div class="box">
+            <!--h2 class="title">Titilo prueba</h2-->
+            {% block content %}
+            <!--codigo que viene del template-->
+            <strong>Contenido del bloque original</strong>
+            <!--VALOR QUE SE MUESTRA POR DEFECTO SI NO HAY UN BLOCK CONTENT DEFINIDO-->
+            {% endblock  %}
+        </div>
+    </div>
+
+    <footer>
+        Master en Python &copy; Miguel Vargas - {% now "d/m/Y h:m:s" %}
+    </footer>
+</body>
+
+</html>
