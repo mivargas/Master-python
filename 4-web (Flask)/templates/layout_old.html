@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} | Maseter en python {% endblock title %} | Aprendiendo Flask</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <h1>Aprendiendo Flask</h1>
+    <hr>
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}"> Inicio </a> {# el nombre de la ruta que se usa es con el que se define la funcion #}
+            </li>
+            <li>
+                <a href="{{ url_for('informacion') }}"> Información </a>
+            </li>
+            <li>
+                <a href="{{ url_for('contacto') }}"> Contacto </a>
+            </li>   
+            <li>
+                <a href="{{ url_for('lenguajes') }}"> Lenguajes </a>
+            </li>           
+        </ul>
+    <hr>
+    <section id="content">
+        {% block content %}
+
+        {% endblock content %}
+    </section>
+    <footer>
+        <hr>
+        Master en python - Miguel Vargas
+    </footer>
+</body>
+</html>

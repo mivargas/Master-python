@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Coches
+{% endblock title %}
+
+{% block content %}
+  
+    <h1>Coches</h1>
+    {% with  messages = get_flashed_messages()  %} {# Asi se mestran los mensajes flash #}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message alert-success">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% include 'includes/lista_coches.html' %}
+
+{% endblock content %}

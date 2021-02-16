@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  Inicio
+  {{ super() }} {# heredar contenido dentro del block title de layout (evitar la sobre escritura) #}
+{% endblock title %}
+
+{% block content %}
+
+  <h1>Página de inicio</h1>
+
+  {% with  messages = get_flashed_messages()  %} {# Asi se mestran los mensajes flash #}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message alert-success">
+          {{message}}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {#
+    {{dato}}
+    {{dato2}}
+    {{lista}}
+  #}
+{% include 'includes/edad.html' %} {# incluir templates dentro de otra #}
+
+{% include 'includes/personas.html' %}
+
+  {#
+    comentario multilinea
+  #}
+{% endblock content %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title> {% block title %} | Maseter en python {% endblock title %} | Aprendiendo Flask</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+    <!--Cabecera de la pagina-->
+    <header>
+        <div id="logotipo">
+            <!--Logo flask-->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                <h1>Aprendiendo Flask</h1>
+        </div>
+    </header>
+
+    <nav>
+
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}"> Inicio </a> {# el nombre de la ruta que se usa es con el que se define la funcion #}
+            </li>
+            <li>
+                <a href="{{ url_for('crear_coche') }}"> Crear coche </a>
+            </li>  
+            <li>
+                <a href="{{ url_for('coches') }}"> Listado de coches </a>
+            </li>  
+            <li>
+                <a href="{{ url_for('informacion') }}"> Información </a>
+            </li>
+            <li>
+                <a href="{{ url_for('contacto') }}"> Contacto </a>
+            </li>   
+            <li>
+                <a href="{{ url_for('lenguajes') }}"> Lenguajes </a>
+            </li>  
+        </ul>
+    </nav>
+    
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    
+    <div id="content">
+        <div class="box">
+            {% block content %}
+                <strong>Contenido del bloque original</strong>
+            {% endblock  %}
+        </div>
+    </div>
+
+    <footer>
+        Master en Python &copy; Miguel Vargas - {{now.day}} / {{now.month}} / {{now.year}} {#mostrar la fecha gracias al context processor#}
+    </footer>
+</body>
+
+</html>
